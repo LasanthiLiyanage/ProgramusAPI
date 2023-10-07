@@ -54,10 +54,11 @@ namespace ProgramusAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut]       
-        public async Task<IActionResult> UpdateTask( Tasks tasks)
+        [HttpPut]
+        [Route(template: "UpdateTask")]
+        public async Task<IActionResult> UpdateTask(int id, Tasks tasks)
         {
-            var task = await _unitOfWork.Tasks.GetById(tasks.Id);
+            var task = await _unitOfWork.Tasks.GetById(id);
 
             if (task == null) return NotFound();
 
